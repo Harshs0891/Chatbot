@@ -26,6 +26,8 @@
             <input class="p-1 font-mono text-sm border border-2 border-gray-700 rounded-md bg-slate-900 hover:cursor-pointer" type="button" value="Send" id="buttonInput">
         </div>
     </div>
+
+    
     
     
 
@@ -36,6 +38,14 @@
 
             $('#textInput').val("");
             $('#chatbot').append(userHTML);
+
+            $.get('/chatbot/getResponse',{userMessage : userText}).done(function(data){
+                var returnMessage = "<p class='botText font-mono text-lg text-left leading-6 text-gray-500'>Chatbot: <span>"+ data + "</span></p>";
+                $('#chatbot').append(returnMessage);
+            })
+
+
+
         }
 
         $('#buttonInput').click(function(){
